@@ -16,17 +16,14 @@ jobs:
         with:
           channel: stable
 
-      - name: Flutter Version
-        run: flutter --version
-
       - name: Install Dependencies
         run: flutter pub get
 
-      - name: Build iOS (no codesign)
+      - name: Build iOS Archive
         run: flutter build ipa --no-codesign
 
-      - name: Upload IPA
+      - name: Upload Archive
         uses: actions/upload-artifact@v4
         with:
-          name: ios-ipa
-          path: build/ios/ipa/*.ipa
+          name: ios-archive
+          path: build/ios/archive/Runner.xcarchive
