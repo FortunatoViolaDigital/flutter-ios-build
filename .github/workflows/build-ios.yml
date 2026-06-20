@@ -19,10 +19,25 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
-      - name: Build iOS archive
+      - name: Build iOS (create Xcode project)
         run: flutter build ios --release --no-codesign
 
-      - name: Create ExportOptions.plist
+      - name: Find XCArchive
+        run: |
+          echo "Searching archive..."
+          ls -R build/ios || true
+
+      - name: Create Archive manually
+        run: |
+          mkdir -p build/ios/archive
+          xcodebuild \
+            -workspace ios/Runner.xcworkspace \
+            -scheme Runner \
+            -configuration Release \
+            -archivePath build/ios/archive/Runner.xcarchive \
+            archive CODE_SIGNING_ALLOWED=NO
+
+      - name: Export IPA
         run: |
           cat > ExportOptions.plist <<EOF
           <?xml version="1.0" encoding="UTF-8"?>
@@ -35,14 +50,10 @@ jobs:
               <string>manual</string>
               <key>compileBitcode</key>
               <false/>
-              <key>stripSwiftSymbols</key>
-              <true/>
           </dict>
           </plist>
           EOF
 
-      - name: Export IPA
-        run: |
           xcodebuild -exportArchive \
             -archivePath build/ios/archive/Runner.xcarchive \
             -exportOptionsPlist ExportOptions.plist \
