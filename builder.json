@@ -5,10 +5,11 @@
     "owner": "FortunatoViolaDigital",
     "repo": "flutter-ios-build"
   },
-  "ios": {},
+  "ios": {
+    "path": "ios"
+  },
   "flutter": {
-    "version": "3.35.4",
-    "watch": {}
+    "version": "3.35.4"
   },
   "reactNative": {},
   "mobai": {}
