@@ -307,8 +307,8 @@ jobs:
 
       - name: Debug IPA location
         run: |
-        echo "Searching for IPA files..."
-        find . -name "*.ipa"
+          echo "Searching for IPA files..."
+          find . -name "*.ipa"
 
       - name: Upload IPA artifact
         uses: actions/upload-artifact@v4
