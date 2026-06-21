@@ -1,0 +1,15 @@
+{
+  "project": "kash",
+  "platform": "ios",
+  "github": {
+    "owner": "FortunatoViolaDigital",
+    "repo": "flutter-ios-build"
+  },
+  "ios": {},
+  "flutter": {
+    "version": "3.35.4",
+    "watch": {}
+  },
+  "reactNative": {},
+  "mobai": {}
+}
